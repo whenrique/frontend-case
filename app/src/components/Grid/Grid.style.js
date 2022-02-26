@@ -7,7 +7,8 @@ const S = {
   `,
   Column: styled.div`
     display: flex;
-    width: calc(var(--desktop-wrapper) / 12 * ${({ size }) => size })
+    width: calc(var(--desktop-wrapper) / 12 * ${({ size }) => size });
+    margin: 0 calc(var(--base-margin) * 2)
   `
 }
 
