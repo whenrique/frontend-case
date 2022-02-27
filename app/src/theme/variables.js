@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 const Variables = ({ theme }) => css`
   :root {
-    --desktop-wrapper: 960px;
+    --desktop-wrapper: 800px;
     --color-primary: #3B3B3B;
     --color-highlight: #FE3E6D;
     --color-gray-darken: #6B7076;

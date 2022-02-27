@@ -2,13 +2,23 @@ import styled from 'styled-components'
 
 const S = {
   Row: styled.div`
+    width: 100%;
     display: flex;
     flex-direction: ${({ direction }) => direction};
   `,
   Column: styled.div`
     display: flex;
-    width: calc(var(--desktop-wrapper) / 12 * ${({ size }) => size });
-    margin: 0 calc(var(--base-margin) * 2)
+    width: calc(var(--desktop-wrapper) / 10 * ${({ size }) => size });
+    margin-left: calc(var(--base-margin) * 2);
+    margin-right: calc(var(--base-margin) * 2);
+
+    :first-child {
+      margin-left: 0;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
   `
 }
 
