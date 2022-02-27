@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { Column, Row } from "components/Grid";
+
+import { Row } from "components/Grid";
 
 const S = {
   Header: styled.header`
-    padding: calc(var(--base-margin) * 4);
-    margin-bottom: calc(var(--base-margin) * 6);
+    padding: calc(var(--base) * 6);
+    margin-bottom: calc(var(--base) * 9);
     border-bottom: 1px solid var(--color-gray);
   `,
   Wrapper: styled(Row)`

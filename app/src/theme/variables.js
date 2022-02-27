@@ -2,6 +2,7 @@ import { css } from "styled-components";
 
 const Variables = ({ theme }) => css`
   :root {
+    --base: 4px;
     --desktop-wrapper: 800px;
     --color-primary: #3B3B3B;
     --color-highlight: #FE3E6D;
@@ -11,10 +12,9 @@ const Variables = ({ theme }) => css`
     --color-soft-blue: #EAF7FF;
     --color-white: #fff;
     --font-family-primary: sans-serif;
-    --font-size: 16px;
+    --font-size: calc(var(--base) * 4);
     --font-normal: 400;
     --font-bold: 800;
-    --base-margin: 6px;
   }
 )`
 

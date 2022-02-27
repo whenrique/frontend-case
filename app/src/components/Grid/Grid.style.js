@@ -9,8 +9,8 @@ const S = {
   Column: styled.div`
     display: flex;
     width: calc(var(--desktop-wrapper) / 10 * ${({ size }) => size });
-    margin-left: calc(var(--base-margin) * 2);
-    margin-right: calc(var(--base-margin) * 2);
+    margin-left: calc(var(--base) * 3);
+    margin-right: calc(var(--base) * 3);
 
     :first-child {
       margin-left: 0;
