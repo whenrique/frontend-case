@@ -5,6 +5,7 @@ import {ReactComponent as SearchIcon} from 'pages/Statement/assets/ic_search.svg
 
 const S = {
   SearchControl: styled(Column)`
+    width: 100%;
     padding-top: calc(var(--base) * 5);
     padding-bottom: calc(var(--base) * 5);
     padding-right: calc(var(--base) * 5);

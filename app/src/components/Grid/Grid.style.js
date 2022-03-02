@@ -1,16 +1,26 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const S = {
   Row: styled.div`
-    width: 100%;
+    max-width: 100%;
+    width: var(--desktop-wrapper);
     display: flex;
     flex-direction: ${({ direction }) => direction};
+
+    ${({ direction }) => direction && css`
+      flex-wrap: ${direction};
+    `}
+
+    ${({ wrap }) => wrap && css`
+      flex-wrap: wrap;
+    `}
   `,
   Column: styled.div`
     display: flex;
     width: calc(var(--desktop-wrapper) / 10 * ${({ size }) => size });
     margin-left: calc(var(--base) * 3);
     margin-right: calc(var(--base) * 3);
+    align-items: center;
 
     :first-child {
       margin-left: 0;
