@@ -7,9 +7,9 @@ const S = {
     margin-top:  calc(var(--base) * 10);
   `,
   Header: styled(Row)`
+    justify-content: space-between;
     ${({ lastUpdated }) => lastUpdated && (
       css`
-        justify-content: space-between;
       `
     )}
   `,
@@ -20,6 +20,10 @@ const S = {
   Headings: styled(Column)`
     font-size: 14px;
     color: ${({ lighten }) => lighten ? 'var(--color-gray-darken)' : 'var(--color-primary)'};
+
+    ${({ extraPadding }) => extraPadding && css`
+      padding-left: calc(var(--base) * 11);
+    `}
   `,
   Balance: styled(Column)`
     font-size: calc(var(--base) * 3);
@@ -60,24 +64,39 @@ const S = {
     color: var(--color-gray-darken);
 
 
-    ${({ credit }) => credit && css`
+    ${({ entry }) => entry === 'CREDIT' && css`
       color: var(--color-blue);
       font-weight: bold;
+      align-content: center;
+
+      :before {
+        content: '+';
+      }
     `}
 
-    ${({ debit }) => debit && css`
+    ${({ entry }) => entry === 'DEBIT' && css`
       color: var(--color-highlight);
       font-weight: bold;
+      align-content: center;
+
+      :before {
+        content: '-';
+      }
     `}
 
-    ${({ refunded }) => refunded && css`
+    ${({ entry }) => entry === 'REFUNDED' && css`
       text-decoration: line-through;
     `}
 
     :last-child {
       justify-content: flex-end;
     }
+    
+    ${({ extraPadding }) => extraPadding && css`
+      padding-left: calc(var(--base) * 9);
+    `}
   `
+
 }
 
 export default S

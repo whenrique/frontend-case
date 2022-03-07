@@ -9,6 +9,10 @@ import Summary from './components/Summary'
 import S from './Statement.style'
 
 const Statement = ({ data }) => {
+  if(!data) { return null }
+
+  const { results } = data
+
   return (
     <>
       <S.Wrapper>
@@ -20,8 +24,9 @@ const Statement = ({ data }) => {
         </Column>
       </S.Wrapper>
       <S.Wrapper wrap>
-        <Summary />
-        <Summary />
+        {results.map((props, index) => (
+          <Summary {...props} headings={index === 0} key={props.items[index]} />
+        ))}
       </S.Wrapper>
     </>
   )

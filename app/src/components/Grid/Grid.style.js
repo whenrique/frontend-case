@@ -5,10 +5,9 @@ const S = {
     max-width: 100%;
     width: var(--desktop-wrapper);
     display: flex;
-    flex-direction: ${({ direction }) => direction};
 
     ${({ direction }) => direction && css`
-      flex-wrap: ${direction};
+      flex-direction: ${direction};
     `}
 
     ${({ wrap }) => wrap && css`
