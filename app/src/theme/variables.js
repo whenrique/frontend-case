@@ -12,7 +12,7 @@ const Variables = ({ theme }) => css`
     --color-blue: #1A93DA;
     --color-soft-blue: #EAF7FF;
     --color-white: #fff;
-    --font-family-primary: sans-serif;
+    --font-family-primary: 'Nunito', sans-serif;
     --font-size: calc(var(--base) * 4);
     --font-normal: 400;
     --font-bold: 800;
