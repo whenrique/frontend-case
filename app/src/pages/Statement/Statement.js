@@ -38,8 +38,20 @@ const Statement = () => {
         ]
       }))
     })
-    console.log(newItems)
     setSummary(newItems)
+  }
+
+  const handleSearch = (term) => {
+    const regex = new RegExp(term, 'ig')
+    const newItems = []
+    data.filter(({ items, ...props }) => {
+      items.some(item => item.actor.match(regex) && newItems.push({
+        ...props,
+        items: [
+          item
+        ]
+      }))
+    })
   }
 
   useEffect(() => {
@@ -54,7 +66,7 @@ const Statement = () => {
           <Filter handleFilter={handleFilter} active={filter} />
         </Column>
         <Column size={6}>
-          <Search />
+          <Search handleSearch={handleSearch} />
         </Column>
       </S.Wrapper>
       <S.Wrapper wrap>
