@@ -7,9 +7,11 @@ import {ReactComponent as RefundIcon} from 'pages/Statement/assets/ic_arrow-retu
 import {ReactComponent as DebitIcon} from 'pages/Statement/assets/ic_time-clock.svg'
 import { formatCurrency, formatDate, transaction } from 'utils/utils'
 
-const Summary = ({ headings, ...props }) => {
+const Summary = ({ headings , ...props }) => {
   const { items, date, amountTotal } = props
   const formatedDate = formatDate(date)
+
+  if (!items.length) return null
 
   return (
     <S.Wrapper>
@@ -28,12 +30,12 @@ const Summary = ({ headings, ...props }) => {
         }
       </S.Header>
       <S.Summary>
-        {items.map(item => {
+        {items.map((item, index) => {
           const { status, source, entry, actor, dateEvent, amount } = item
           const type = status.match(/REFUNDED/ig) ? status : entry
 
           return (
-            <S.Details>
+            <S.Details key={index}>
               <S.Detail forwardedAs='p' name size={3}>
                 <Icon rounded detail>
                   {(status === 'COMPLETED') && (

@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext, useState, useEffect } from 'react'
 
 import { Column } from 'components/Grid'
 import Filter from './components/Filter'
@@ -7,33 +6,68 @@ import Search from './components/Search'
 import Summary from './components/Summary'
 
 import S from './Statement.style'
+import SummaryContext from 'providers/SummaryProvider'
 
-const Statement = ({ data }) => {
-  if(!data) { return null }
+const Statement = () => {
+  const { data, loading, error, filter, setFilter } = useContext(SummaryContext)
+  const [summary, setSummary] = useState(null)
 
-  const { results } = data
+  const handleFilter = (slug) => {
+    setFilter(slug)
+
+    if (slug === 'all') {
+      setSummary(data)
+      return
+    }
+
+    if (slug.includes('pending')) {
+      const filteredSummary = data.filter(({ items }) => {
+          return items.some(item => item.scheduled)
+        })
+      setSummary(filteredSummary)
+      return
+    }
+
+    const regex = new RegExp(slug, 'ig')
+    const newItems = []
+    data.filter(({ items, ...props }) => {
+      items.some(item => item.entry.match(regex) && newItems.push({
+        ...props,
+        items: [
+          item
+        ]
+      }))
+    })
+    console.log(newItems)
+    setSummary(newItems)
+  }
+
+  useEffect(() => {
+    if(loading || error) return
+    setSummary(data)
+  }, [data, loading, error])
 
   return (
     <>
       <S.Wrapper>
         <Column size={4}>
-          <Filter />
+          <Filter handleFilter={handleFilter} active={filter} />
         </Column>
         <Column size={6}>
           <Search />
         </Column>
       </S.Wrapper>
       <S.Wrapper wrap>
-        {results.map((props, index) => (
-          <Summary {...props} headings={index === 0} key={props.items[index]} />
-        ))}
+        {summary ? (
+          <>
+            {summary.map((props, index) => (
+              <Summary {...props} headings={index === 0} key={index} />
+            ))}
+          </>
+        ) : 'Loading...'}
       </S.Wrapper>
     </>
   )
-}
-
-Statement.propTypes = {
-  data: PropTypes.array.isRequired
 }
 
 export default Statement
